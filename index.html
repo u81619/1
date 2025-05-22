@@ -2,68 +2,41 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8" />
-  <title>استضافة haiderSY | تفعيل GoldHEN 9.00</title>
+  <title>استضافة haiderSY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    // إذا ما شاف صفحة catch يرجعه إلها
+    if (!localStorage.getItem("seenCatch")) {
+      window.location.href = "catch.html";
+    }
+  </script>
   <style>
     body {
-      background-color: #121212;
+      background-color: #1a1a1a;
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 80px;
-      min-height: 100vh;
-      position: relative;
     }
     h1 {
-      color: #00ccff;
-      margin-bottom: 15px;
-      font-size: 2.2em;
-    }
-    .message {
-      font-size: 1.3em;
-      margin-bottom: 5px;
-      color: #ffd700;
-      min-height: 2em;
-    }
-    .sub-message {
-      font-size: 1.1em;
-      color: #88ff88cc;
       margin-bottom: 30px;
-      min-height: 1.5em;
+      color: #00ccff;
     }
-    .progress-container {
-      width: 80%;
-      max-width: 450px;
-      height: 25px;
+    #alerts {
+      max-width: 500px;
+      margin: auto;
+      text-align: right;
+      padding: 0 20px;
+    }
+    .alert-box {
       background: #333;
-      border-radius: 12px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-      background: #03c46a;
-      transition: width 0.3s;
-    }
-    .percent-label {
-      margin-top: 15px;
-      font-size: 1.3em;
-      color: #0f0;
-    }
-    .footer {
-      position: absolute;
-      bottom: 15px;
-      width: 100%;
-      text-align: center;
-      font-size: 1em;
-    }
-    .footer a {
-      color: #1e90ff;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
+      color: #fff;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-right: 5px solid #ffcc00;
+      border-radius: 5px;
+      font-size: 1.1em;
+      direction: rtl;
     }
   </style>
 </head>
@@ -71,47 +44,32 @@
 
   <h1>استضافة haiderSY</h1>
 
-  <div class="message" id="message">يرجى وضع الفلاش وانتظر رسالة النظام، ثم انتظر 5 ثواني...</div>
-  <div class="sub-message" id="subMessage"></div>
-
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
-  <div class="percent-label" id="percent">0%</div>
-
-  <div class="footer">
-    تابعني على <a href="https://www.youtube.com/@7aider777" target="_blank">قناتي على يوتيوب</a>
-  </div>
+  <div id="alerts"></div>
 
   <script>
-    const message = document.getElementById("message");
-    const subMessage = document.getElementById("subMessage");
-    const progressBar = document.getElementById("progressBar");
-    const percentLabel = document.getElementById("percent");
+    const messages = [
+      "يرجى إدخال الفلاش USB.",
+      "انتظر رسالة النظام...",
+      "جاري تفعيل GoldHEN...",
+      "تم تفعيل الجيلبريك بنجاح!",
+      "الآن يمكنك سحب الفلاش."
+    ];
 
-    let progress = 0;
+    let index = 0;
+    const container = document.getElementById("alerts");
 
-    setTimeout(() => {
-      message.textContent = "جاري تفعيل GoldHEN...";
-      subMessage.textContent = "";
+    function showAlert() {
+      if (index < messages.length) {
+        const box = document.createElement("div");
+        box.className = "alert-box";
+        box.textContent = messages[index];
+        container.appendChild(box);
+        index++;
+        setTimeout(showAlert, 3000);
+      }
+    }
 
-      let interval = setInterval(() => {
-        if (progress >= 100) {
-          clearInterval(interval);
-          message.textContent = "تم تفعيل GoldHEN بنجاح!";
-          percentLabel.textContent = "100%";
-          percentLabel.style.color = "#0cf";
-
-          subMessage.textContent = "يمكنك الآن سحب الفلاش.";
-          subMessage.style.color = "#88ff88cc";
-
-          return;
-        }
-        progress += 4;
-        progressBar.style.width = progress + "%";
-        percentLabel.textContent = progress + "%";
-      }, 200);
-    }, 5000);
+    showAlert();
   </script>
 
 </body>
