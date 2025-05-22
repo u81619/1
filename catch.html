@@ -22,7 +22,6 @@
       border-radius: 10px;
       margin: 0 auto 20px auto;
       position: relative;
-      user-select: none;
       overflow: hidden;
     }
     .progress-bar {
@@ -42,21 +41,17 @@
       color: #fff;
       font-weight: bold;
       z-index: 2;
-      pointer-events: none;
-      user-select: none;
     }
     .channel-name {
       font-size: 1.4em;
       color: #ddd;
       margin-bottom: 40px;
-      user-select: none;
     }
     .final-message {
       font-size: 1.3em;
       color: #ff4444;
       font-weight: bold;
       display: none;
-      user-select: none;
     }
   </style>
 </head>
@@ -81,6 +76,9 @@
         clearInterval(interval);
         percent.textContent = "100%";
         finalMsg.style.display = "block";
+
+        // حفظ أنه دخل صفحة catch
+        localStorage.setItem("seenCatch", "true");
         return;
       }
       progress += 5;
