@@ -1,91 +1,94 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html manifest="cache.manifest" lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>تفعيل - 7aider</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      background-color: #121212;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 100px;
-      min-height: 100vh;
-      margin: 0;
-    }
-    .progress-container {
-      width: 80%;
-      max-width: 400px;
-      height: 30px;
-      background-color: #333;
-      border-radius: 10px;
-      margin: 0 auto 20px auto;
-      position: relative;
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background-color: #00cc66;
-      transition: width 0.3s;
-      position: relative;
-      z-index: 1;
-    }
-    .percent-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.2em;
-      color: #fff;
-      font-weight: bold;
-      z-index: 2;
-    }
-    .channel-name {
-      font-size: 1.4em;
-      color: #ddd;
-      margin-bottom: 40px;
-    }
-    .final-message {
-      font-size: 1.3em;
-      color: #ff4444;
-      font-weight: bold;
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>مرحباً بك في 7aider777 المضيف الجديد PSFREE الأسرع Exfat USB - تثبيت التخزين المؤقت</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 50px;
+  }
+  h1 {
+    color: #00ccff;
+  }
+  .progress-container {
+    width: 80%;
+    max-width: 400px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 10px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #00cc66;
+    transition: width 0.3s;
+    position: relative;
+    z-index: 1;
+  }
+  .percent-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    color: #fff;
+    font-weight: bold;
+    z-index: 2;
+  }
+</style>
 </head>
 <body>
 
-  <div class="progress-container">
-    <div class="progress-bar" id="bar"></div>
-    <div class="percent-label" id="percent">0%</div>
-  </div>
+<script>
+  history.replaceState(null,null,'index.html');
+  var histlength = history.length;
+  history.go(-histlength);
 
-  <div class="channel-name">7aider</div>
-  <div class="final-message" id="finalMsg">اغلق الموقع واوقف الانترنت ثم ادخل من جديد</div>
+  function DLProgress(e) {
+    var Percent = Math.round(e.loaded / e.total * 100);
+    document.getElementById("bar").style.width = Percent + "%";
+    document.getElementById("percent").textContent = Percent + "%";
+    setTimeout(function () {
+      window.msgs.innerHTML = "جاري بدء تثبيت التخزين المؤقت، يرجى الانتظار " + Percent + "%";
+    }, 500);
+  }
 
-  <script>
-    let progress = 0;
-    const bar = document.getElementById("bar");
-    const percent = document.getElementById("percent");
-    const finalMsg = document.getElementById("finalMsg");
+  function DisplayCacheProgress() {
+    setTimeout(function () {
+      window.msgs.innerHTML = "تم تثبيت التخزين المؤقت بنجاح ✔";
+      document.getElementById("bar").style.width = "100%";
+      document.getElementById("percent").textContent = "100%";
+    }, 1500);
+    setTimeout(function () {
+      window.msgs.innerHTML = "الآن أغلق المتصفح وافتحه مرة أخرى";
+    }, 3500);
+  }
 
-    const interval = setInterval(() => {
-      if (progress >= 100) {
-        clearInterval(interval);
-        percent.textContent = "100%";
-        finalMsg.style.display = "block";
+  window.applicationCache.addEventListener("progress", DLProgress, false);
+  window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
+  window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
+</script>
 
-        // حفظ أنه دخل صفحة catch
-        localStorage.setItem("seenCatch", "true");
-        return;
-      }
-      progress += 5;
-      bar.style.width = progress + "%";
-      percent.textContent = progress + "%";
-    }, 200);
-  </script>
+<h1>مرحباً بك في 7aider777 المضيف الجديد PSFREE - بدء التخزين المؤقت</h1>
+<hr>
+
+<!-- شريط التقدم -->
+<div class="progress-container">
+  <div class="progress-bar" id="bar"></div>
+  <div class="percent-label" id="percent">0%</div>
+</div>
+
+<h1 id="msgs" style="font-size: 26px; margin-top: 40px; margin-bottom: 300px;">
+  جاري بدء التخزين المؤقت...
+</h1>
 
 </body>
 </html>
