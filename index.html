@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>استضافة haiderSY | تفعيل GoldHEN 9.00</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 80px;
+      min-height: 100vh;
+      position: relative;
+    }
+    h1 {
+      color: #00ccff;
+      margin-bottom: 15px;
+      font-size: 2.2em;
+    }
+    .message {
+      font-size: 1.3em;
+      margin-bottom: 5px;
+      color: #ffd700;
+      min-height: 2em;
+    }
+    .sub-message {
+      font-size: 1.1em;
+      color: #88ff88cc;
+      margin-bottom: 30px;
+      min-height: 1.5em;
+    }
+    .progress-container {
+      width: 80%;
+      max-width: 450px;
+      height: 25px;
+      background: #333;
+      border-radius: 12px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: #03c46a;
+      transition: width 0.3s;
+    }
+    .percent-label {
+      margin-top: 15px;
+      font-size: 1.3em;
+      color: #0f0;
+    }
+    .footer {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 1em;
+    }
+    .footer a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>استضافة haiderSY</h1>
+
+  <div class="message" id="message">يرجى وضع الفلاش وانتظر رسالة النظام، ثم انتظر 5 ثواني...</div>
+  <div class="sub-message" id="subMessage"></div>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="percent-label" id="percent">0%</div>
+
+  <div class="footer">
+    تابعني على <a href="https://www.youtube.com/@7aider777" target="_blank">قناتي على يوتيوب</a>
+  </div>
+
+  <script>
+    const message = document.getElementById("message");
+    const subMessage = document.getElementById("subMessage");
+    const progressBar = document.getElementById("progressBar");
+    const percentLabel = document.getElementById("percent");
+
+    let progress = 0;
+
+    setTimeout(() => {
+      message.textContent = "جاري تفعيل GoldHEN...";
+      subMessage.textContent = "";
+
+      let interval = setInterval(() => {
+        if (progress >= 100) {
+          clearInterval(interval);
+          message.textContent = "تم تفعيل GoldHEN بنجاح!";
+          percentLabel.textContent = "100%";
+          percentLabel.style.color = "#0cf";
+
+          subMessage.textContent = "يمكنك الآن سحب الفلاش.";
+          subMessage.style.color = "#88ff88cc";
+
+          return;
+        }
+        progress += 4;
+        progressBar.style.width = progress + "%";
+        percentLabel.textContent = progress + "%";
+      }, 200);
+    }, 5000);
+  </script>
+
+</body>
+</html>
