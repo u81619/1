@@ -2,7 +2,7 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8" />
-  <title>حالة التفعيل - استضافة haiderSY</title>
+  <title>تفعيل - 7aider</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -12,7 +12,7 @@
       text-align: center;
       padding-top: 100px;
       min-height: 100vh;
-      position: relative;
+      margin: 0;
     }
     .progress-container {
       width: 80%;
@@ -20,10 +20,10 @@
       height: 30px;
       background-color: #333;
       border-radius: 10px;
-      margin: 0 auto;
-      overflow: hidden;
+      margin: 0 auto 20px auto;
       position: relative;
       user-select: none;
+      overflow: hidden;
     }
     .progress-bar {
       height: 100%;
@@ -45,19 +45,18 @@
       pointer-events: none;
       user-select: none;
     }
-    .footer {
-      position: absolute;
-      bottom: 15px;
-      width: 100%;
-      text-align: center;
-      font-size: 1em;
+    .channel-name {
+      font-size: 1.4em;
+      color: #ddd;
+      margin-bottom: 40px;
+      user-select: none;
     }
-    .footer a {
-      color: #1e90ff;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
+    .final-message {
+      font-size: 1.3em;
+      color: #ff4444;
+      font-weight: bold;
+      display: none;
+      user-select: none;
     }
   </style>
 </head>
@@ -68,19 +67,20 @@
     <div class="percent-label" id="percent">0%</div>
   </div>
 
-  <div class="footer">
-    تابعني على <a href="https://www.youtube.com/@اسم_قناتك" target="_blank">قناتي على يوتيوب</a>
-  </div>
+  <div class="channel-name">7aider</div>
+  <div class="final-message" id="finalMsg">اغلق الموقع واوقف الانترنت ثم ادخل من جديد</div>
 
   <script>
     let progress = 0;
     const bar = document.getElementById("bar");
     const percent = document.getElementById("percent");
+    const finalMsg = document.getElementById("finalMsg");
 
     const interval = setInterval(() => {
       if (progress >= 100) {
         clearInterval(interval);
         percent.textContent = "100%";
+        finalMsg.style.display = "block";
         return;
       }
       progress += 5;
